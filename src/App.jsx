@@ -7,10 +7,10 @@ import JobDetails from "./Pases/JobDetails"
 import Onboarding from "./Pases/Onboarding"
 import Applicant from "./Pases/Applicant"
 import PostJobs from "./Pases/PostJobs"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Button } from "./components/ui/button"
+import Header from "./Layoutes/Header"
+import Footer from "./Layoutes/Footer"
+import { ThemeProvider } from "./components/Theme-provider"
+
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   return (
 
     <>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
     <Header/>
     <Routes>
       <Route index element={<Home/>} />
