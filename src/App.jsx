@@ -9,7 +9,7 @@ import Applicant from "./Pases/Applicant"
 import PostJobs from "./Pases/PostJobs"
 import Header from "./Layoutes/Header"
 import Footer from "./Layoutes/Footer"
-import { ThemeProvider } from "@/components/Theme-provider"
+import { ThemeProvider } from "./components/theme-provider"
 
 
 
