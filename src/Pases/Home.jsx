@@ -1,4 +1,4 @@
-import FeaturedJobs from "@/Layoutes/featuredJobs";
+import FeaturedJobs from "@/Layoutes/FeaturedJobs";
 import Hero from "@/Layoutes/Hero";
 import HowItWorks from "@/Layoutes/Howitworks";
 import JobCategories from "@/Layoutes/Jobcategories";
