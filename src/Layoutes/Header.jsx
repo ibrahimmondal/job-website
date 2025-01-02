@@ -18,13 +18,13 @@ export default function Header() {
 
 
   return (
-    <header className="bg-white shadow-sm dark:bg-black">
+    <header className="">
      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           {/* Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               {/* <Briefcase className="h-8 w-auto sm:h-10 text-primary" /> */}
               <span className="ml-2 text-xl font-bold dark:text-white text-gray-900">JobRex</span>
             </Link>
@@ -47,10 +47,10 @@ export default function Header() {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-10">
-            <Link href="/jobs" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Find Jobs
             </Link>
-            <Link href="/companies" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <Link to="/my-jobs" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Companies
             </Link>
             <Link href="/resources" className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -73,13 +73,21 @@ export default function Header() {
           </div> */}
 
           {/* User actions */}
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0 gap-2">
             <Button variant="ghost" size="icon" className="ml-4">
               <Bell className="h-5 w-5" aria-hidden="true" />
             </Button>
            
             <SignedIn>
-            <UserButton />
+            <UserButton appearance={{elements:{avatarBox:"size-10"}}}>
+              <UserButton.MenuItems>
+              <UserButton.Link
+              label="My job"
+              labelIcon={<Briefcase />}
+              href="/my-jobs"
+            />
+              </UserButton.MenuItems>
+            </UserButton>
             </SignedIn>
             <SignedOut>
             <Button variant="ghost" size="icon" className="ml-4" onClick={() => setShowLogin(true)}>
@@ -98,7 +106,7 @@ export default function Header() {
         </div>
       </div>
       {
-        showLogin && (<div className="fixed inset-0 flex items-center justify-center bg-gray-600/70 text-accent-foreground " onClick={loginRemove}><SignIn /></div>)
+        showLogin && (<div className="fixed inset-0 flex items-center justify-center bg-gray-600/70 text-accent-foreground " onClick={loginRemove}><SignIn signUpForceRedirectUrl="/onboard" signInFallbackRedirectUrl="/onboard" signInForceRedirectUrl="/onboard"  /></div>)
       }
       
 

@@ -1,7 +1,26 @@
-import React from 'react'
+import FeaturedJobs from "@/Layoutes/featuredJobs";
+import Hero from "@/Layoutes/Hero";
+import HowItWorks from "@/Layoutes/Howitworks";
+import JobCategories from "@/Layoutes/Jobcategories";
+import JobSearchTips from "@/Layoutes/Jobsearchtips";
+import Testimonials from "@/Layoutes/Testimonials";
 
-export default function Home() {
+
+function App() {
   return (
-    <div>Home</div>
-  )
+    <>
+    <div>
+    <Hero/>
+    <JobCategories/>
+    <FeaturedJobs/>
+    <HowItWorks/>
+    <Testimonials/>
+    <JobSearchTips/>
+   
+
+    </div>
+    </>
+  );
 }
+
+export default App;
