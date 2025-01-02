@@ -7,7 +7,7 @@ const featuredJobs = [
   { id: 2, title: "Product Manager", company: "InnovateCo", location: "New York, NY", type: "Full-time" },
   { id: 3, title: "UX Designer", company: "DesignHub", location: "Remote", type: "Contract" },
   { id: 4, title: "Data Analyst", company: "DataDrive", location: "Chicago, IL", type: "Part-time" },
-]
+]  
 
 export default function FeaturedJobs() {
   return (
