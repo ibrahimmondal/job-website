@@ -6,6 +6,7 @@ import JobSearchTips from "@/Layoutes/Jobsearchtips";
 import Testimonials from "@/Layoutes/Testimonials";
 
 
+// supabase password ibrahim@5025
 function App() {
   return (
     <>
