@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button"
 import { Search, Menu, X, Bell, User, Briefcase, FileText, MessageSquare, LogIn } from 'lucide-react'
-import { Link } from "react-router"
+import { Link, useSearchParams } from "react-router"
 import ThemeToggle from "@/components/mode-toggle"
 // import { ModeToggle } from "@/components/mode-toggle"
 
@@ -12,10 +12,18 @@ export default function Header() {
  const loginRemove = (e) => {
  if(e.target === e.currentTarget){
   setShowLogin(false)
+  setSearch({})
  }
  }
  const closeMenu = (e) => setIsMenuOpen(false)
 
+const [search, setSearch] = useSearchParams()
+useEffect(() => {
+if(search.get("sign-in")){
+  setShowLogin(true)
+
+}
+},[search])
 
   return (
     <header className="">
@@ -47,15 +55,25 @@ export default function Header() {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-10">
-            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Find Jobs
+            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            Home
             </Link>
-            <Link to="/my-jobs" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Companies
+            <Link to="/jobs" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            Jobs
             </Link>
-            <Link href="/resources" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Resources
+            <Link to="/my-jobs" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            My jobs
             </Link>
+            <Link to="/applicant" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            Applicant
+            </Link>
+            <Link to="/Post-Job" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            Post Job
+            </Link>
+            <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            About
+            </Link>
+           
           </nav>
 
           {/* Search bar
@@ -106,7 +124,7 @@ export default function Header() {
         </div>
       </div>
       {
-        showLogin && (<div className="fixed inset-0 flex items-center justify-center bg-gray-600/70 text-accent-foreground " onClick={loginRemove}><SignIn signUpForceRedirectUrl="/onboard" signInFallbackRedirectUrl="/onboard" signInForceRedirectUrl="/onboard"  /></div>)
+        showLogin && (<div className="fixed inset-0 flex items-center justify-center bg-gray-600/70 text-accent-foreground " onClick={loginRemove}><SignIn signUpForceRedirectUrl="/onboard" fallbackRedirectUrl="/onboard"/></div>)
       }
       
 

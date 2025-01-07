@@ -10,6 +10,7 @@ import PostJobs from "./Pases/PostJobs"
 import Header from "./Layoutes/Header"
 import Footer from "./Layoutes/Footer"
 import { ThemeProvider } from "./components/Theme-provider"
+import AuthenticatedRoute from "./components/AuthenticatedRoute"
 
 
 
@@ -23,13 +24,13 @@ function App() {
     <Header/>
     <Routes>
       <Route index element={<Home/>} />
-      <Route path="about" element={<About/>}/>
-      <Route path="jobs" element={<AllJobs/>}/>
-      <Route path="my-jobs" element={<MyJobs/>}/>
-      <Route path="jobs:id" element={<JobDetails/>}/>
-      <Route path="onboard" element={<Onboarding/>}/>
-      <Route path="applicant" element={<Applicant/>}/>
-      <Route path="Post-Job" element={<PostJobs/>}/>
+      <Route path="/about" element={<About/>}/>
+      <Route path="/jobs" element={<AuthenticatedRoute><AllJobs/></AuthenticatedRoute>}/>
+      <Route path="/my-jobs" element={<AuthenticatedRoute><MyJobs/></AuthenticatedRoute>}/>
+      <Route path="/jobs:id" element={<AuthenticatedRoute><JobDetails/></AuthenticatedRoute>}/>
+      <Route path="/onboard" element={<AuthenticatedRoute><Onboarding/></AuthenticatedRoute>}/>
+      <Route path="/applicant" element={<AuthenticatedRoute><Applicant/></AuthenticatedRoute>}/>
+      <Route path="/Post-Job" element={<AuthenticatedRoute><PostJobs/></AuthenticatedRoute>}/>
     </Routes>
     {/* <Button></Button> */}
     <Footer/>

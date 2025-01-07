@@ -17,8 +17,6 @@ function App() {
     <HowItWorks/>
     <Testimonials/>
     <JobSearchTips/>
-   
-
     </div>
     </>
   );
