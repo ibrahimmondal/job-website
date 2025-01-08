@@ -1,10 +1,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUser } from "@clerk/clerk-react";
+
 import { UserSearch, ClipboardList } from 'lucide-react';
-import { useEffect } from "react";
 import { ThreeDots } from 'react-loader-spinner';
-import { useNavigate } from "react-router"; // Corrected the import for useNavigate
+import { useNavigate } from "react-router";
+
 // const categories = [
 //   { name: "Recruiter", subittle: "I want to post a job", icon: UserSearch },
 //   { name: "Applicant", subittle: "I'm looking for job", icon: ClipboardList },
@@ -13,10 +14,10 @@ import { useNavigate } from "react-router"; // Corrected the import for useNavig
 export default function Onboarding() {
   const { user, isLoaded } = useUser();
   const navigate = useNavigate();
-  console.log(user);
+  // console.log(user);
 
   const navigateUser = (currentRole) => {
-    navigate(currentRole === "applicant" ? "/jobs" : "/post-Job");
+    navigate(currentRole === "applicant" ? "/jobs" : "/post-job");
   };
 
   const handleUserRole = async (role) => {
@@ -26,11 +27,13 @@ export default function Onboarding() {
     });
   };
 
-  useEffect(() => {
+ 
+
   if(user?.unsafeMetadata?.role){
     navigateUser(user.unsafeMetadata.role);
   }
-  }, [user])
+ 
+
 
   if (!isLoaded) {
     return (

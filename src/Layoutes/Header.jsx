@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button"
 import { Search, Menu, X, Bell, User, Briefcase, FileText, MessageSquare, LogIn } from 'lucide-react'
-import { Link, useSearchParams } from "react-router"
+import { Link, NavLink, useSearchParams } from "react-router"
 import ThemeToggle from "@/components/mode-toggle"
 // import { ModeToggle } from "@/components/mode-toggle"
 
 export default function Header() {
+  const {user} = useUser()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
  const loginRemove = (e) => {
@@ -64,12 +65,12 @@ if(search.get("sign-in")){
             <Link to="/my-jobs" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
             My jobs
             </Link>
-            <Link to="/applicant" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            {/* <Link to="/applicant" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
             Applicant
             </Link>
             <Link to="/Post-Job" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
             Post Job
-            </Link>
+            </Link> */}
             <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white">
             About
             </Link>
@@ -112,10 +113,16 @@ if(search.get("sign-in")){
               <User className="h-5 w-5" aria-hidden="true" />
            </Button>
             </SignedOut>
-           
-            <Button variant="default" className="ml-8">
+           {
+            user?.unsafeMetadata.role === "recruiter" && (
+              <NavLink to="/job-post">
+              <Button variant="default" className="ml-8" as={NavLink} >
               Post a Job
             </Button>
+              </NavLink>
+            )
+           }
+           
           </div>
            <div className="hidden md:block">
            <ThemeToggle/>
