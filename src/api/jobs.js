@@ -1,17 +1,10 @@
+import supabaseClient from "@/utils/supabase";
+// import supabase from "@/utils/supabase";
 
 
-// let { data: job, error } = await supabase
-//   .from('job')
-//   .select('*')
-// let { data: job, error } = await supabase
-//   .from('job')
-//   .select('*')
-
-import supabase from "@/utils/supabase";
-
-
-  export async function getJobs (){
-    let puery = supabase.from("job").select("*")
+  export async function getJobs (token){
+    const supabase = await supabaseClient(token)
+    let puery = supabase.from("jobs").select("*")
     const { data, error} = await puery
     
     if(error){

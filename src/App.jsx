@@ -30,7 +30,7 @@ function App() {
       <Route path="/jobs:id" element={<AuthenticatedRoute><JobDetails/></AuthenticatedRoute>}/>
       <Route path="/onboard" element={<AuthenticatedRoute><Onboarding/></AuthenticatedRoute>}/>
       <Route path="/applicant" element={<AuthenticatedRoute><Applicant/></AuthenticatedRoute>}/>
-      <Route path="/Post-Job" element={<AuthenticatedRoute><PostJobs/></AuthenticatedRoute>}/>
+      <Route path="/post-Job" element={<AuthenticatedRoute><PostJobs/></AuthenticatedRoute>}/>
     </Routes>
     {/* <Button></Button> */}
     <Footer/>

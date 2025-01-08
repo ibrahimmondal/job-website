@@ -32,6 +32,7 @@ const ReviewCard = ({ content, imgSrc, name, company }) => {
             height={44}
             loading="lazy"
             className="img-cover"
+            
           />
         </figure>
 
