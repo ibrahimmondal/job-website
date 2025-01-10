@@ -18,12 +18,14 @@ import {
 } from "@/components/ui/select"
 import { getcompany } from "@/api/company";
 
+
+
 export default function AllJobs() {
   const [searchTerm, setSearchTerm] = useState("");
   const [company_id, setCompany_id] = useState("");
   const { isLoaded } = useUser()
   const { data: job, loading: jobLoaded, fetchData: fetchJobs } = useFetch(getJobs,{searchTerm, company_id})
-  const { data: company,  fetchData: fetchCompany } = useFetch(getcompany)
+  const { data: companies,  fetchData: fetchCompany } = useFetch(getcompany)
   useEffect(() => {
     if (isLoaded) {
       fetchJobs()
@@ -34,6 +36,16 @@ export default function AllJobs() {
       fetchCompany()
     }
   }, [isLoaded])
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+   const formData = new FormData(e.target)
+   console.log(formData);
+   const query = formData.get('search-job')
+   if(query){
+     setSearchTerm(query)
+   }
+  }
 
   if (!isLoaded) {
     return (
@@ -50,15 +62,7 @@ export default function AllJobs() {
       </div>
     );
   }
-const handleSearch = (e) => {
-  e.preventDefault()
- const formData = new FormData(e.target)
- console.log(formData);
- const query = formData.get('search-job')
- if(query){
-   setSearchTerm(query)
- }
-}
+
 
 
   return (
@@ -93,32 +97,50 @@ const handleSearch = (e) => {
               <SelectContent>
                 <SelectGroup>
                   {
-                    company.map(({name, id}) => {
+                    companies.map(({name, id}) => {
                       return(
-                        <SelectItem key={id} value={name}>{name}</SelectItem>                   
-                      )})
-                }
+                        <SelectItem key={id} value={id}>{name}</SelectItem>                   
+                      );
+                    })}
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
         </div>
 
-        {
+        {/* {
           jobLoaded ? (
             <div className="flex justify-center ">
               <SkeletonDemo />
             </div>
           ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
-            {job.map(({job, id}) =>
-            {
-              return(
-                <JobCard job={job} key={                                                             id} />
-              )
-            }
+            {job.map((job) =>
+            (
+
+              <JobCard job={job} key={job.id} />
+            )
+            
           )}
           </div>)
-        }
+        } */}
+        
+         {jobLoaded ? (
+             <div className="flex justify-center">
+             <SkeletonDemo />
+           </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {job.length === 0 || null ? (
+                  <div>No Job Found!</div>
+                ) : (
+                  job?.map((job) => (
+
+                    <JobCard key={job.id} job={job} />
+                  )
+                )
+                )}
+              </div>
+            )}
       </div>
     </>
   )
