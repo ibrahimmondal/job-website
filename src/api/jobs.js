@@ -1,16 +1,22 @@
 import supabaseClient from "@/utils/supabase";
-// import supabase from "@/utils/supabase";
 
-
-  export async function getJobs (token){
-    const supabase = await supabaseClient(token)
-    let puery = supabase.from("jobs").select("*")
-    const { data, error} = await puery
-    
-    if(error){
-      console.log(error);
-      return null;
-      
-    }
-    return data;
+export async function getJobs(token, { company_id, searchTerm }) {
+  const supabase = await supabaseClient(token);
+  let query = supabase.from("jobs").select("*, companies(name,logo_url)");
+  if (company_id) {
+    query = query.eq("company_id", company_id);
   }
+
+  if (searchTerm) {
+    query = query.ilike("title", `%${searchTerm}%`);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error loading data..", error);
+    return null;
+  }
+
+  return data;
+}

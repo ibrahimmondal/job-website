@@ -10,7 +10,7 @@ export default function AuthenticatedRoute({children}) {
 //   if (isSignedIn === false){
 // return <Navigate to="/?sign-in=true"/>
 //   }
-  if(user !== undefined && !user?.unsafeMetadata?.role && pathName !== "/onboard"){
+  if(user !== undefined && !user?.unsafeMetadata?.role && pathName == "/onboard"){
     return <Navigate to="/onboard" />
   }
      

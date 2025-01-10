@@ -12,9 +12,9 @@ export default function Hero() {
             Find Your Dream Job
             <span className="block text-[#0891b2]">Build Your Future</span>
           </h1>
-          
+
           <p className="max-w-2xl mx-auto text-xl text-gray-500">
-            Connect with top companies and opportunities that match your skills and aspirations. 
+            Connect with top companies and opportunities that match your skills and aspirations.
             Your next career move starts here.
           </p>
 
@@ -56,7 +56,7 @@ export default function Hero() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">10k+ Jobs</h3>
               <p className="text-muted-foreground mt-2">New opportunities added daily</p>
             </div>
-            
+
           </div>
         </div>
       </div>

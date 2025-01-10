@@ -16,7 +16,7 @@ export default function useFetch(cb, options = {}) {
     })
     const response = await cb(supabaseToken, options, ...args);
     setData(response)
-    console.log(response);
+    // console.log(response);
     setError(null)
     } catch (error){
      setError(error)
