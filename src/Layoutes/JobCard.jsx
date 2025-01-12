@@ -24,9 +24,11 @@ export default function JobCard({job}) {
     {job.location}
     </p>
     <p className="text-sm font-semibold mt-2">{job.salary}</p>
+      <Link to={`/jobs/${job.id}`}>
     <Button className="w-full mt-4" >
-      <Link to={`/jobs/${job.id}`}>Apply Now</Link>
+      Apply Now
     </Button>
+      </Link>
     </CardContent>
     </Card>
     </div>
