@@ -27,7 +27,7 @@ function App() {
       <Route path="/about" element={<About/>}/>
       <Route path="/jobs" element={<AuthenticatedRoute><AllJobs/></AuthenticatedRoute>}/>
       <Route path="/my-jobs" element={<AuthenticatedRoute><MyJobs/></AuthenticatedRoute>}/>
-      <Route path="/jobs:id" element={<AuthenticatedRoute><JobDetails/></AuthenticatedRoute>}/>
+      <Route path="/jobs/:id" element={<AuthenticatedRoute><JobDetails/></AuthenticatedRoute>}/>
       <Route path="/onboard" element={<AuthenticatedRoute><Onboarding/></AuthenticatedRoute>}/>
       <Route path="/applicant" element={<AuthenticatedRoute><Applicant/></AuthenticatedRoute>}/>
       <Route path="/post-Job" element={<AuthenticatedRoute><PostJobs/></AuthenticatedRoute>}/>

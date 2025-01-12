@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { getcompany } from "@/api/company";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -62,7 +63,11 @@ export default function AllJobs() {
       </div>
     );
   }
-
+const clearFilter = () => {
+  setSearchTerm("")
+  setCompany_id("")
+  value=""
+}
 
 
   return (
@@ -71,15 +76,15 @@ export default function AllJobs() {
         <div className="py-6 text-center">
           <h1 className="text-3xl font-semibold">Job listing</h1>
         </div>
-        <div className="flex gap-10 items-center "> 
-          <div className="w-full mx-auto mt-8 border rounded-lg mb-10">
+        <div className="flex gap-5 items-center "> 
+          <div className="w-full mx-auto mt-10 border rounded-lg mb-10">
             <div className="p-2 bg-card rounded-lg shadow-lg">
               <form onSubmit={handleSearch}>
               <div className="flex-1 flex items-center ">
                 <Search className="w-5 h-5 text-gray-400 mr-3" />
                 <input
-                // value={searchTerm}
-                // onChange={(e)=>setSearchTerm(e.target.value)}
+                value={searchTerm}
+                onChange={(e)=>setSearchTerm(e.target.value)}
                   type="text"
                   name="search-job"
                   placeholder="Job title or keyword"
@@ -90,7 +95,7 @@ export default function AllJobs() {
             </div>
           </div>
           <div>
-            <Select value={company_id} onValueChange={(value) => setCompany_id(value)}>
+            <Select value={company_id} onValueChange={(value) => setCompany_id(value)} className="broder-none">
               <SelectTrigger className="w-[280px]">
                 <SelectValue placeholder="Select a company" />
               </SelectTrigger>
@@ -106,24 +111,8 @@ export default function AllJobs() {
               </SelectContent>
             </Select>
           </div>
+          <Button onClick={clearFilter}>Clear Filter</Button>
         </div>
-
-        {/* {
-          jobLoaded ? (
-            <div className="flex justify-center ">
-              <SkeletonDemo />
-            </div>
-          ) : (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
-            {job.map((job) =>
-            (
-
-              <JobCard job={job} key={job.id} />
-            )
-            
-          )}
-          </div>)
-        } */}
-        
          {jobLoaded ? (
              <div className="flex justify-center">
              <SkeletonDemo />
@@ -131,11 +120,12 @@ export default function AllJobs() {
             ) : (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {job.length === 0 || null ? (
-                  <div>No Job Found!</div>
+                  <div className="text-red-500 pb-4 font-semibold">No Job Found!</div>
                 ) : (
                   job?.map((job) => (
-
-                    <JobCard key={job.id} job={job} />
+                       <div>
+                         <JobCard key={job.id} job={job} />
+                       </div>
                   )
                 )
                 )}
