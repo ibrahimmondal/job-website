@@ -20,3 +20,38 @@ export async function getJobs(token, { company_id, searchTerm }) {
 
   return data;
 }
+
+
+// get a single job
+
+export async function getSingleJob(token, { id }) {
+  const supabase = await supabaseClient(token);
+  let query = supabase
+    .from("jobs")
+    .select("*, companies(name,logo_url), applications(*)")
+    .eq("id", id)
+    .single();
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error loading single job data..", error);
+    return null;
+  }
+
+  return data;
+}
+
+export async function updatedHiringStatus(token, { id }, isOpen) {
+  const supabase = await supabaseClient(token);
+  let query = supabase.from("jobs").update({ isOpen }).eq("id", id).select();
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error udpdating job status..", error);
+    return null;
+  }
+
+  return data;
+}

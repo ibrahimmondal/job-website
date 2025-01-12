@@ -120,7 +120,7 @@ if(search.get("sign-in")){
               Post a Job
             </Button>
               </NavLink>
-            )
+            ) 
            }
            
           </div>
